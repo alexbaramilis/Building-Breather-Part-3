@@ -20,6 +20,7 @@
 		610FF868227899B600100C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF85A227899B600100C57 /* AppDelegate.swift */; };
 		610FF869227899B600100C57 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF85C227899B600100C57 /* ViewModel.swift */; };
 		610FF86B227899B600100C57 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF85F227899B600100C57 /* MainViewModel.swift */; };
+		610FF86E2278A5D300100C57 /* AirVisualAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF86D2278A5D300100C57 /* AirVisualAPI.swift */; };
 		B8E8776775DED109940C1C36 /* Pods_Breather_Part_3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A424AC85453B956E001D1245 /* Pods_Breather_Part_3.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		610FF85C227899B600100C57 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		610FF85D227899B600100C57 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		610FF85F227899B600100C57 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		610FF86D2278A5D300100C57 /* AirVisualAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirVisualAPI.swift; sourceTree = "<group>"; };
 		69A53B7AECD3E48D67352E8E /* Pods-Breather Part 3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breather Part 3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Breather Part 3/Pods-Breather Part 3.debug.xcconfig"; sourceTree = "<group>"; };
 		A3595D71F3F23298308B3456 /* Pods-Breather Part 3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breather Part 3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Breather Part 3/Pods-Breather Part 3.release.xcconfig"; sourceTree = "<group>"; };
 		A424AC85453B956E001D1245 /* Pods_Breather_Part_3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Breather_Part_3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				610FF8492278999D00100C57 /* View */,
 				610FF85E227899B600100C57 /* ViewModel */,
 				610FF84E227899B600100C57 /* Model */,
+				610FF86C2278A52100100C57 /* Networking */,
 				610FF850227899B600100C57 /* Supporting Files */,
 			);
 			path = "Breather Part 3";
@@ -158,6 +161,14 @@
 				610FF85F227899B600100C57 /* MainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		610FF86C2278A52100100C57 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				610FF86D2278A5D300100C57 /* AirVisualAPI.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		F578077670573759D44C7423 /* Frameworks */ = {
@@ -246,6 +257,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Breather Part 3/Pods-Breather Part 3-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
@@ -253,6 +267,9 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -290,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				610FF86E2278A5D300100C57 /* AirVisualAPI.swift in Sources */,
 				610FF868227899B600100C57 /* AppDelegate.swift in Sources */,
 				610FF869227899B600100C57 /* ViewModel.swift in Sources */,
 				610FF862227899B600100C57 /* Asset.swift in Sources */,
