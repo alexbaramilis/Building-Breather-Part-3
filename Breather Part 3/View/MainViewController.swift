@@ -49,15 +49,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(willEnterForeground),
-                                               name: UIApplication.willEnterForegroundNotification,
+                                               selector: #selector(didBecomeActive),
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
         bindViewModel()
         setupRefreshControl()
-        refresh()
     }
 
-    @objc private func willEnterForeground() {
+    @objc private func didBecomeActive() {
         refresh()
     }
 
