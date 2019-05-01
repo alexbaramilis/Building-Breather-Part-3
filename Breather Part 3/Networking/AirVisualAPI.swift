@@ -12,7 +12,7 @@ import Moya
 public enum AirVisualAPI {
     static private let key = "A5xEAXuhEFJZyZA4o"
     // Endpoints
-    case nearestCity(Double, Double)
+    case nearestCity(lat: Double, lon: Double)
 }
 
 extension AirVisualAPI: TargetType {

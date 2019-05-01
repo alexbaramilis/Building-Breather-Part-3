@@ -11,8 +11,15 @@ import UIKit.UIImage
 import UIKit.UIColor
 import RxSwift
 import RxCocoa
+import Moya
 
 class MainViewModel: ViewModel {
+
+    // MARK: - Dependencies
+
+    let provider = MoyaProvider<AirVisualAPI>()
+    let lat = 40.676906
+    let lon = -73.942275
 
     // MARK: - Inputs
 
@@ -135,13 +142,14 @@ class MainViewModel: ViewModel {
             .do(onNext: { [unowned self] _ in
                 self.isLoadingSubject.onNext(true)
             })
-            .delay(RxTimeInterval(3), scheduler: MainScheduler.instance)
-            .map { CityConditions.sampleData() }
+            .flatMap { [unowned self] _ in
+                return self.provider.rx.request(.nearestCity(lat: self.lat, lon: self.lon))
+            }
             .do(onNext: { [unowned self] _ in
                 self.isLoadingSubject.onNext(false)
             })
-            .subscribe(onNext: { [unowned self] cityConditions in
-                self.cityConditionsSubject.onNext(cityConditions)
+            .subscribe(onNext: { response in
+                print("response:", response)
             })
             .disposed(by: disposeBag)
     }
