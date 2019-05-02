@@ -56,9 +56,12 @@ class MainViewModel: ViewModel {
         let asthmaProbability: Driver<String>
         // Loading
         let isLoading: Driver<Bool>
+        // Error
+        let error: Driver<Error>
     }
 
     private let isLoadingSubject = PublishSubject<Bool>()
+    private let errorSubject = PublishSubject<Error>()
 
     // MARK: - Private properties
 
@@ -136,7 +139,8 @@ class MainViewModel: ViewModel {
                         asthmaRisk: asthmaRisk,
                         asthmaRiskColour: asthmaRiskColour,
                         asthmaProbability: asthmaProbability,
-                        isLoading: isLoadingSubject.asDriver(onErrorJustReturn: false))
+                        isLoading: isLoadingSubject.asDriver(onErrorJustReturn: false),
+                        error: errorSubject.asDriver(onErrorJustReturn: BreatherError.unknown))
 
         viewDidRefreshSubject
             .do(onNext: { [unowned self] _ in
@@ -144,12 +148,18 @@ class MainViewModel: ViewModel {
             })
             .flatMap { [unowned self] _ in
                 return self.provider.rx.request(.nearestCity(lat: self.lat, lon: self.lon))
+                    .asObservable()
+                    .materialize()
             }
             .do(onNext: { [unowned self] _ in
                 self.isLoadingSubject.onNext(false)
             })
-            .subscribe(onNext: { response in
-                print("response:", response)
+            .subscribe(onNext: { [unowned self] event in
+                switch event {
+                case let .next(element): print("next:", element)
+                case let .error(error): self.errorSubject.onNext(error)
+                case .completed: break
+                }
             })
             .disposed(by: disposeBag)
     }

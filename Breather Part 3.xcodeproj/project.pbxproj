@@ -21,6 +21,8 @@
 		610FF869227899B600100C57 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF85C227899B600100C57 /* ViewModel.swift */; };
 		610FF86B227899B600100C57 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF85F227899B600100C57 /* MainViewModel.swift */; };
 		610FF86E2278A5D300100C57 /* AirVisualAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FF86D2278A5D300100C57 /* AirVisualAPI.swift */; };
+		61DACD1B227AF520003C7A6A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DACD1A227AF520003C7A6A /* UIViewController+Extension.swift */; };
+		61DACD1D227AF784003C7A6A /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DACD1C227AF784003C7A6A /* Errors.swift */; };
 		B8E8776775DED109940C1C36 /* Pods_Breather_Part_3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A424AC85453B956E001D1245 /* Pods_Breather_Part_3.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +43,8 @@
 		610FF85D227899B600100C57 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		610FF85F227899B600100C57 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		610FF86D2278A5D300100C57 /* AirVisualAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirVisualAPI.swift; sourceTree = "<group>"; };
+		61DACD1A227AF520003C7A6A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		61DACD1C227AF784003C7A6A /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		69A53B7AECD3E48D67352E8E /* Pods-Breather Part 3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breather Part 3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Breather Part 3/Pods-Breather Part 3.debug.xcconfig"; sourceTree = "<group>"; };
 		A3595D71F3F23298308B3456 /* Pods-Breather Part 3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breather Part 3.release.xcconfig"; path = "Pods/Target Support Files/Pods-Breather Part 3/Pods-Breather Part 3.release.xcconfig"; sourceTree = "<group>"; };
 		A424AC85453B956E001D1245 /* Pods_Breather_Part_3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Breather_Part_3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +138,7 @@
 				610FF853227899B600100C57 /* Asset.swift */,
 				610FF854227899B600100C57 /* Text.swift */,
 				610FF855227899B600100C57 /* Color.swift */,
+				61DACD1C227AF784003C7A6A /* Errors.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			children = (
 				610FF859227899B600100C57 /* String+Extension.swift */,
 				610FF858227899B600100C57 /* UILabel+Extension.swift */,
+				61DACD1A227AF520003C7A6A /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,12 +313,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DACD1B227AF520003C7A6A /* UIViewController+Extension.swift in Sources */,
 				610FF86E2278A5D300100C57 /* AirVisualAPI.swift in Sources */,
 				610FF868227899B600100C57 /* AppDelegate.swift in Sources */,
 				610FF869227899B600100C57 /* ViewModel.swift in Sources */,
 				610FF862227899B600100C57 /* Asset.swift in Sources */,
 				610FF867227899B600100C57 /* String+Extension.swift in Sources */,
 				610FF860227899B600100C57 /* CityConditions.swift in Sources */,
+				61DACD1D227AF784003C7A6A /* Errors.swift in Sources */,
 				610FF86B227899B600100C57 /* MainViewModel.swift in Sources */,
 				610FF866227899B600100C57 /* UILabel+Extension.swift in Sources */,
 				610FF863227899B600100C57 /* Text.swift in Sources */,

@@ -108,6 +108,10 @@ class MainViewController: UIViewController {
         viewModel.output.isLoading.drive(onNext: { [unowned self] isLoading in
             self.showLoadingIndicators(force: isLoading)
         }).disposed(by: disposeBag)
+        // - Error
+        viewModel.output.error.drive(onNext: { [unowned self] error in
+            self.showAlert(title: "Error", message: error.localizedDescription)
+        }).disposed(by: disposeBag)
     }
 
     private func setupRefreshControl() {
