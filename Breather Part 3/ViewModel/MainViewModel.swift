@@ -143,40 +143,22 @@ class MainViewModel: ViewModel {
                         isLoading: isLoadingSubject.asDriver(onErrorJustReturn: false),
                         error: errorSubject.asDriver(onErrorJustReturn: BreatherError.unknown))
 
+        let airVisualNearestCity = airVisualAPI.rx.request(.nearestCity(lat: lat, lon: lon))
+        let propellerForecast = propellerAPI.rx.request(.forecast(lat: lat, lon: lon))
+        let zipped = Observable.zip(airVisualNearestCity.asObservable(), propellerForecast.asObservable())
+
         viewDidRefreshSubject
-            .subscribe(onNext: { [unowned self] _ in
-                self.isLoadingSubject.onNext(true)
-            })
-            .disposed(by: disposeBag)
-
-        let weatherAndPollution = viewDidRefreshSubject
-            .flatMap { [unowned self] _ in
-                return self.airVisualAPI.rx.request(.nearestCity(lat: self.lat, lon: self.lon))
-                    .asObservable()
-                    .materialize()
-            }
-
-        let asthma = viewDidRefreshSubject
-            .flatMap { [unowned self] _ in
-                return self.propellerAPI.rx.request(.forecast(lat: self.lat, lon: self.lon))
-                    .asObservable()
-                    .materialize()
-            }
-
-        Observable.zip(weatherAndPollution, asthma)
-            .do(onNext: { [unowned self] _ in
-                self.isLoadingSubject.onNext(false)
-            })
-            .subscribe(onNext: { [unowned self] (weatherAndPollutionEvent, asthmaEvent) in
-                switch (weatherAndPollutionEvent, asthmaEvent) {
-                case let (.next(weatherAndPollutionResponse), .next(asthmaResponse)):
-                    print("weatherAndPollutionResponse:", weatherAndPollutionResponse)
-                    print("asthmaResponse", asthmaResponse)
-                case let (.error(error), _):
+            .do(onNext: { [unowned self] _ in self.isLoadingSubject.onNext(true) })
+            .flatMap { zipped.materialize() }
+            .do(onNext: { [unowned self] _ in self.isLoadingSubject.onNext(false) })
+            .subscribe(onNext: { [unowned self] materializedEvent in
+                switch materializedEvent {
+                case let .next(airVisualNearestCityResponse, propellerForecastResponse):
+                    print("airVisualNearestCityResponse:", airVisualNearestCityResponse)
+                    print("propellerForecastResponse:", propellerForecastResponse)
+                case let .error(error):
                     self.errorSubject.onNext(error)
-                case let (_, .error(error)):
-                    self.errorSubject.onNext(error)
-                default: break
+                case .completed: break
                 }
             })
             .disposed(by: disposeBag)
